@@ -580,9 +580,6 @@ export default defineComponent({
     hasHeaderSlot() {
       return this.$slots.hasOwnProperty("header");
     },
-    // pagination_this() {
-    //   return this.pagination;
-    // },
   },
   created() {
     this.uuid = uid();
@@ -604,33 +601,6 @@ export default defineComponent({
     }
     this.gorupby_option = [{ label: "Group By Field", value: "" }];
     this.setColumnsDefinition();
-    // let self = this;
-    // self.column_options = {};
-    // self.columns.filter(function (item) {
-    //     self.column_options[item.field] = [];
-    //     self.column_options_selected[item.field] = []
-    //     self.filter_flags[item.field] = false;
-    //     if (item.hasOwnProperty('grouping') && item.grouping)
-    //     {
-    //         self.gorupby_option.push({"label": item.label, "value": item.field});
-    //     }
-    //     return item
-    // });
-    // self.data.filter(function (item) {
-    //     self.columns.filter(function (column) {
-    //         if(item[column.field] != null) {
-    //           self.column_options[column.field].push({
-    //             label: item[column.field].toString(),
-    //             value: item[column.field].toString().toLowerCase().replace(/_/g, '_')
-    //           })
-    //         }
-    //     });
-    // });
-    // self.columns.filter(function (column) {
-    //     self.column_options[column.field] = [...new Map(self.column_options[column.field].map(item =>
-    //         [item['value'], item])).values()];
-    // });
-    // this.final_column = this.selected_group_by_filed.value != '' ? this.grouped_column : this.columns;
   },
   methods: {
     onRequest(data) {
@@ -730,11 +700,8 @@ export default defineComponent({
       const element2 = dom.querySelector("table thead tr:nth-of-type(1)");
       let self = this;
       const sortable = Sortable.create(element, {
-        // filter:'.ignore-elements',
-        // preventOnFilter: true,
         disabled: !this.draggable,
         onEnd(event) {
-          // if (event.newIndex != 0) {
           let tmp = self.data[event.oldIndex];
           self.data[event.oldIndex] = self.data[event.newIndex];
           self.data[event.newIndex] = tmp;
@@ -743,7 +710,6 @@ export default defineComponent({
             old_index: event.oldIndex,
             new_index: event.newIndex,
           });
-          // }
         },
         onMove: function (/**Event*/ evt, /**Event*/ originalEvent) {
           if (evt.related.className == "ignore-elements q-tr") {
