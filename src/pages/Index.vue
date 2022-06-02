@@ -1,6 +1,6 @@
 <template>
   <div class="q-pa-md">
-    <teste
+    <q-grid
       :data="rows"
       :columns="grid"
       :loading="loading"
@@ -10,19 +10,17 @@
       :draggable_columns="true"
       @dragged_column="DraggedColumn($event)"
     >
-    </teste>
+    </q-grid>
   </div>
 </template>
 
 <script>
 import { ref, onMounted } from "vue";
-import QGrid from "src/components/QGrid.vue";
 import { columns_default, originalRows } from "./consts";
 
 let columns = columns_default;
 
 export default {
-  components: { teste: QGrid },
   setup() {
     const rows = ref([]);
     const filter = ref("");
